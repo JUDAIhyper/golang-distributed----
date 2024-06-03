@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  gradingservice:
+    image: gradingservice:latest
+    build:
+      context: .
+      dockerfile: docker/gradingservice.Dockerfile
+    ports:
+      - "6000:6000"
+    networks:
+      - mynetwork
+
+  logservice:
+    image: logservice:latest
+    build:
+      context: .
+      dockerfile: docker/logservice.Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - mynetwork
+
+  registryservice:
+    image: registryservice:latest
+    build:
+      context: .
+      dockerfile: docker/registryservice.Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
