@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  registryservice:
+    image: registryservice:latest
+    build:
+      context: .
+      dockerfile: docker/registryservice.Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
   gradingservice:
     image: gradingservice:latest
     build:
@@ -18,16 +27,6 @@ services:
       dockerfile: docker/logservice.Dockerfile
     ports:
       - "4000:4000"
-    networks:
-      - mynetwork
-
-  registryservice:
-    image: registryservice:latest
-    build:
-      context: .
-      dockerfile: docker/registryservice.Dockerfile
-    ports:
-      - "3000:3000"
     networks:
       - mynetwork
 
